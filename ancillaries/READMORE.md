@@ -26,7 +26,7 @@ the service kicks off to check for a change in url. Once this condition is met, 
 # The monitor_file service
 This service does the following things
 
-1. checks for a [new file](../essential-data.csv) at a specified location which can be downloaded through the *download_file* service or
+1. checks for a new file, *essential-data.csv*, at a specified location. It can be downloaded by the *download_file* service or
 2. checks for an update to an already existing file
 
 Once it detects any of the above conditions, it updates the essential DB table is a manner that takes into consideration of the file size and the volume of the data to process.
@@ -34,4 +34,4 @@ Once it detects any of the above conditions, it updates the essential DB table i
 # Supervisor dashboard
 Supervisor helps to keep things simple by offering an interface to manage these service. The url can be found at the [dev link](http://127.0.0.1:17001) or the [prodution link](http://127.0.0.1:18001).
 
-The login details for the [dev link](./dev-supervisor.conf) while the login details for the [prodution link](./prod-supervisor.conf)
+The login details for the dev link is in *dev-supervisor.conf* while the login details for the prodution link is in *prod-supervisor.conf*
