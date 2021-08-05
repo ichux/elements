@@ -34,4 +34,4 @@ Once it detects any of the above conditions, it updates the essential DB table i
 # Supervisor dashboard
 Supervisor helps to keep things simple by offering an interface to manage these service. The url can be found at the [dev link](http://127.0.0.1:17001) or the [prodution link](http://127.0.0.1:18001).
 
-The login details for the [dev link](dev-supervisor.conf) while the login details for the [prodution link](prod-supervisor.conf)
+The login details for the [dev link](./dev-supervisor.conf) while the login details for the [prodution link](./prod-supervisor.conf)
