@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  element_app_dev_service:
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    command: supervisord
+    container_name: element_app_dev_container
+    restart: on-failure
+    volumes:
+      - .:/app
+    ports:
+      - $DJANGO_DEV_PORT:8000
+      - $SUPERVISOR_DEV_PROD_PORT:9001
+    networks:
+      - elements
+
+networks:
+  elements:
+    driver: bridge

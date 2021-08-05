@@ -1,0 +1,18 @@
+.env
+per_settings.py
+supervisord.pid
+
+# csv
+essential-data.csv
+.essential-data.csv
+
+# dbs
+db.sqlite3
+elements.sqlite3
+
+# logs
+*.log
+*.log*
+
+static/*
+ancillaries/*
