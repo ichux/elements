@@ -15,13 +15,13 @@ You can call these with *curl*:
 curl 'http://127.0.0.1:17002/api/'
 curl 'http://127.0.0.1:17002/api/download-url/'
 
-curl --location --request POST 'http://127.0.0.1:17002/api/download-url-data/' \
+curl POST 'http://127.0.0.1:17002/api/download-url-data/' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "url": "https://docs.google.com/spreadsheet/ccc?key=0Aqg9JQbnOwBwdEZFN2JKeldGZGFzUWVrNDBsczZxLUE&single=true&gid=0&output=csv"
 }'
 
-curl --location --request PUT 'http://127.0.0.1:17002/api/download-url-data/' \
+curl PUT 'http://127.0.0.1:17002/api/download-url-data/' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "url": "https://docs.google.com/spreadsheet/ccc?key=0Aqg9JQbnOwBwdEZFN2JKeldGZGFzUWVrNDBsczZxLUE&single=true&gid=0&output=csv"
@@ -51,13 +51,18 @@ Type *make bootstrap* as the first command to ensure some necessary files are cr
 
 And be careful not to run it more than once as it overwrites whatever is inside *.env* and *core/per_settings.py*
 
-> the .env file
+> the .env file:
 It contains variables used by both Django and Docker to ensure the app works well.
 
 And
 
-> the core/per_settings.py file
+> the core/per_settings.py file:
 It contains exactly the same thing in core/settings.py and more. Plus you can add other necessary variables to taste.
 
 # The included Makefile
 Type *make* on your terminal, while inside the directory that contains this code and see the help it offers. Plus, there are examples of how to use some necessary commands contained in it.
+
+# How this project works
+There are 2 monitoring services: download_file and monitor_file. And you can see them and monitor, restart, see their log details, etc by visiting the [dev link](http://127.0.0.1:17001) or the [prodution link](http://127.0.0.1:18001).
+
+[Read more](ancillaries/READMORE.md) about this project.
