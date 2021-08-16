@@ -1,4 +1,4 @@
-# Project of elements dot nl
+# elements.nl
 This project makes the following assumptions.
 1. Your PC is Unix/Linux variant
 2. You have `curl`, `docker` and `docker-compose` installed and working on your PC
