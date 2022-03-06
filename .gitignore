@@ -16,3 +16,4 @@ elements.sqlite3
 
 static/*
 ancillaries/*
+__pycache__
