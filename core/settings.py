@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 import logging
+import os
 import sys
 from pathlib import Path
 
@@ -134,8 +135,41 @@ STATIC_ROOT = BASE_DIR / "static"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-# Helps you to set the settings file to taste
-try:
-    from core.per_settings import *
-except ImportError:
-    pass
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "[%(asctime)s] %(levelname)s [%(pathname)s: %(name)s.%(funcName)s:%(lineno)s]:%(message)s",
+            "datefmt": "%d/%b/%Y %H:%M:%S",
+        },
+        "simple": {
+            "format": "%(levelname)s %(message)s",
+        },
+    },
+    "handlers": {
+        "file": {
+            "class": "logging.handlers.RotatingFileHandler",
+            "formatter": "verbose",
+            "level": logging.ERROR,
+            "filename": BASE_DIR / "ancillaries" / "logs" / "django.log",
+            "maxBytes": 1024 * 1024 * 10,  # 10 MB
+            "backupCount": 20,
+        },
+        "console": {
+            "class": "logging.StreamHandler",
+            "level": "DEBUG",
+            "formatter": "simple",
+            "stream": sys.stdout,
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["file", "console"],
+            "level": "INFO",
+            "propagate": True,
+        },
+    },
+}
+
+os.environ.setdefault("CHECK_URL_INTERVAL", "10")

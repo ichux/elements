@@ -35,7 +35,7 @@ curl 'http://127.0.0.1:17002/api/csv/1/'
 
 # How to set up this project
 Please ensure that you follow this process to the latter for it to run as expected.
-Type *make bootstrap* as the first command to ensure some necessary files are created for this project to work.
+Type *make bootstrap* as the first command to ensure a necessary file is created for this project to work.
 
 > Set Up for Development
 1. type _make build c=dev_
@@ -47,17 +47,12 @@ Type *make bootstrap* as the first command to ensure some necessary files are cr
 2. replace *dev* that appears in the *Set Up for Development* section with *prod* e.g. _make tests c=dev_ will become _make tests c=prod_
 
 # Essential files
-*make bootstrap* is meant to create two essential files: *.env* and *core/per_settings.py*. Feel free to alter these files to taste.
+*make bootstrap* is meant to create an essential file: *.env*. Feel free to alter these files to taste.
 
-And be careful not to run it more than once as it overwrites whatever is inside *.env* and *core/per_settings.py*
+And be careful not to run it more than once as it overwrites whatever is inside the *.env*
 
 > the .env file:
 It contains variables used by both Django and Docker to ensure the app works well.
-
-And
-
-> the core/per_settings.py file:
-It contains exactly the same thing in core/settings.py and more. Plus you can add other necessary variables to taste.
 
 # The included Makefile
 Type *make* on your terminal, while inside the directory that contains this code and see the help it offers. Plus, there are examples of how to use some necessary commands contained in it.

@@ -8,6 +8,11 @@ services:
     command: supervisord
     container_name: element_app_dev_container
     restart: on-failure
+    environment:
+      TIME_ZONE: $TIME_ZONE
+      CHECK_URL_INTERVAL: $CHECK_URL_INTERVAL
+      LANGUAGE_CODE: $LANGUAGE_CODE
+      ALLOWED_HOSTS: $ALLOWED_HOSTS
     volumes:
       - .:/app
     ports:
