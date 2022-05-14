@@ -19,8 +19,9 @@ services:
       - $DJANGO_DEV_PORT:8000
       - $SUPERVISOR_DEV_PROD_PORT:9001
     networks:
-      - elements
+      elements:
+        ipv4_address: 192.168.8.210
 
 networks:
   elements:
-    driver: bridge
+    external: true

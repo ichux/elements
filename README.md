@@ -36,7 +36,15 @@ curl 'http://127.0.0.1:17002/api/csv/1/'
 
 # How to set up this project
 Please ensure that you follow this process to the latter for it to run as expected.
-Type *make bootstrap* as the first command to ensure a necessary file is created for this project to work.
+1. Type *make bootstrap* as the first command to ensure a necessary file is created for this project to work.
+2. Type
+
+```
+# note that you should change '192.168.8.1' and '192.168.8.0/24' to your IP, probably a Home Router IP
+docker network create --gateway 192.168.8.1 --subnet 192.168.8.0/24 elements
+```
+3. On *Line 23* of *dev-docker-compose.yml* change the IP address there to taste.
+
 
 > Set Up for Development
 1. type _make build c=dev_
