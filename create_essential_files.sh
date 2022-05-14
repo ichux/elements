@@ -35,3 +35,7 @@ echo "\n\n===\n'.env' has been successfully created\n===\n\n"
 if [ "$answer" != "${answer#[Yy]}" ] ;then
     create_files
 fi
+
+# if [[ "$1" =~ ^[Yy]$ ]]; then
+#     create_files
+# fi

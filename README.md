@@ -18,13 +18,14 @@ curl 'http://127.0.0.1:17002/api/download-url/'
 curl POST 'http://127.0.0.1:17002/api/download-url-data/' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "url": "https://docs.google.com/spreadsheet/ccc?key=0Aqg9JQbnOwBwdEZFN2JKeldGZGFzUWVrNDBsczZxLUE&single=true&gid=0&output=csv"
+    "url": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQCWpPxfs56UYwEn2wooltUmA7L1gjzLeuG3MixbhA1XxkBI3eIlFbKN0-xXvtpwhGUx_ERY3VZq7zD/pub?gid=217478775&single=true&output=csv"
 }'
+
 
 curl PUT 'http://127.0.0.1:17002/api/download-url-data/' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "url": "https://docs.google.com/spreadsheet/ccc?key=0Aqg9JQbnOwBwdEZFN2JKeldGZGFzUWVrNDBsczZxLUE&single=true&gid=0&output=csv"
+    "url": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQCWpPxfs56UYwEn2wooltUmA7L1gjzLeuG3MixbhA1XxkBI3eIlFbKN0-xXvtpwhGUx_ERY3VZq7zD/pub?gid=217478775&single=true&output=csv"
 }'
 
 curl 'http://127.0.0.1:17002/api/prime/'

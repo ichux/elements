@@ -20,7 +20,7 @@ bootstrap:
 # help: build						- build the docker containers
 build:
 	@#make build c=prod OR make build c=dev
-	@docker-compose -f $(c)-docker-compose.yml up --remove-orphan --build -d
+	@docker-compose -f $(c)-docker-compose.yml up --build -d
 
 
 .PHONY: bash
@@ -45,10 +45,11 @@ tests:
 .PHONY: admin
 # help: admin						- Create an admin user
 admin:
+	@#make admin c=dev
 	@echo "from django.contrib.auth.models import User; \
 	User.objects.create_superuser('admin', 'admin@elements.nl', 'P455InPWforAdmin')" \
 	| docker exec -i element_app_$(c)_container python manage.py shell
-	@echo "And admin user was successfully created"
+	@echo "An admin user was successfully created"
 
 
 .PHONY: redev
