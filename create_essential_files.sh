@@ -27,6 +27,9 @@ DJANGO_DEV_PORT=0.0.0.0:17002
 # DOCKER PRODUCTION
 SUPERVISOR_ADMIN_PROD_PORT=18001
 DJANGO_PROD_PORT=0.0.0.0:18002
+
+# Local Network IP
+LAN_IP=192.168.8.210
 EOF
 
 echo "\n\n===\n'.env' has been successfully created\n===\n\n"
@@ -35,7 +38,3 @@ echo "\n\n===\n'.env' has been successfully created\n===\n\n"
 if [ "$answer" != "${answer#[Yy]}" ] ;then
     create_files
 fi
-
-# if [[ "$1" =~ ^[Yy]$ ]]; then
-#     create_files
-# fi
