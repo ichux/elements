@@ -25,6 +25,7 @@ DJANGO_DEV_PORT=17002
 # DOCKER PRODUCTION
 SUPERVISOR_ADMIN_PROD_PORT=18001
 DJANGO_PROD_PORT=18002
+NGINX_PORT=18003
 EOF
 
 echo "\n\x1b[32m===\x1b[0m\n'.env' has been successfully created\n\x1b[32m===\x1b[0m\n"

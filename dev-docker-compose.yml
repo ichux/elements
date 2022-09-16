@@ -10,7 +10,7 @@ services:
       retries: 10
     build:
       context: .
-      dockerfile: dev.Dockerfile
+      dockerfile: ancillaries/dev.Dockerfile
     command: supervisord
     container_name: cf_elements_app_dev
     restart: on-failure

@@ -8,12 +8,13 @@ RUN groupadd --gid 1000 debian-11 && \
     useradd --uid 1000 --gid debian-11 --create-home --no-log-init --shell /bin/bash debian-11
 
 RUN apt-get update && apt-get install -y supervisor netcat curl && apt-get clean
-COPY ancillaries/dev-supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY ancillaries/requirements.txt /app/ancillaries/requirements.txt
+COPY ./ancillaries/prod-supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY ./ancillaries/requirements.txt /app/ancillaries/requirements.txt
 
 WORKDIR /app
 RUN pip3.10 install --no-cache-dir --disable-pip-version-check --upgrade \
-    pip setuptools wheel -r /app/ancillaries/requirements.txt && chown -R debian-11:debian-11 ./
+    pip setuptools wheel gunicorn -r /app/ancillaries/requirements.txt && \
+    chown -R debian-11:debian-11 ./
 
 USER debian-11
 ENTRYPOINT ["sh", "./entrypoint.sh"]

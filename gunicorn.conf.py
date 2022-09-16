@@ -26,10 +26,12 @@ def strtobool(val):
     raise ValueError(f"invalid truth value {val}")
 
 
+wsgi_app = "core.wsgi:application"
 bind = "0.0.0.0:8000"
 
 accesslog = f'{pathlib.Path.cwd() / "ancillaries" / "logs" / "gunicorn-access.log"}'
 errorlog = f'{pathlib.Path.cwd() / "ancillaries" / "logs" / "gunicorn-error.log"}'
+capture_output = True
 loglevel = "debug"
 access_log_format = (
     "%(h)s %(l)s %(u)s %(t)s '%(r)s' %(s)s %(b)s '%(f)s' '%(a)s' in %(D)sµs"
@@ -41,7 +43,7 @@ graceful_timeout = 30
 
 workers = int(os.getenv("CONCURRENCY", multiprocessing.cpu_count() * 2 + 1))
 reload = bool(strtobool(os.getenv("WEB_RELOAD", "false")))
-worker_class = "meinheld.gmeinheld.MeinheldWorker"
+# worker_class = "meinheld.gmeinheld.MeinheldWorker"
 
 pidfile = f'{pathlib.Path.cwd() / "ancillaries" / "logs" / "ws.pid"}'
 profiling_prefix = f'{pathlib.Path.cwd() / "ancillaries" / "logs" / "cprof."}'
