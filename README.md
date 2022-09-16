@@ -12,26 +12,26 @@ OR
 You can call these with *curl*:
 
 ```
-curl 'http://127.0.0.1:17002/api/'
-curl 'http://127.0.0.1:17002/api/download-url/'
+curl -s 'http://127.0.0.1:18002/api/'
+curl -s 'http://127.0.0.1:18002/api/download-url/'
 
-curl POST 'http://127.0.0.1:17002/api/download-url-data/' \
+curl -XPOST 'http://127.0.0.1:18002/api/download-url-data/' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "url": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQCWpPxfs56UYwEn2wooltUmA7L1gjzLeuG3MixbhA1XxkBI3eIlFbKN0-xXvtpwhGUx_ERY3VZq7zD/pub?gid=217478775&single=true&output=csv"
 }'
 
 
-curl PUT 'http://127.0.0.1:17002/api/download-url-data/' \
+curl -XPUT 'http://127.0.0.1:18002/api/download-url-data/' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "url": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQCWpPxfs56UYwEn2wooltUmA7L1gjzLeuG3MixbhA1XxkBI3eIlFbKN0-xXvtpwhGUx_ERY3VZq7zD/pub?gid=217478775&single=true&output=csv"
 }'
 
-curl 'http://127.0.0.1:17002/api/prime/'
-curl 'http://127.0.0.1:17002/api/csv/'
-curl 'http://127.0.0.1:17002/api/csv/?limit=10&offset=10'
-curl 'http://127.0.0.1:17002/api/csv/1/'
+curl -s 'http://127.0.0.1:18002/api/prime/'
+curl -s 'http://127.0.0.1:18002/api/csv/'
+curl -s 'http://127.0.0.1:18002/api/csv/?limit=10&offset=10'
+curl -s 'http://127.0.0.1:18002/api/csv/1/'
 ```
 
 # How to set up this project
