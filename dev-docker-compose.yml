@@ -1,12 +1,13 @@
 version: '3.7'
 
 services:
-  if_elements_app_prod:
+  if_elements_app_dev:
+    image: if_elements_app_dev
     build:
       context: .
       dockerfile: dev.Dockerfile
     command: supervisord
-    container_name: cf_elements_app_prod
+    container_name: cf_elements_app_dev
     restart: on-failure
     environment:
       TIME_ZONE: $TIME_ZONE

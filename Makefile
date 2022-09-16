@@ -38,7 +38,7 @@ logs:
 # help: tests						- Runs tests for the application
 tests:
 	@#make tests c=prod OR make tests c=dev
-	@docker exec -i element_app_$(c)_container python3 runtests.py
+	@docker exec -i cf_elements_app_$(c) python3 runtests.py
 
 .PHONY: admin
 # help: admin						- Create an admin user

@@ -10,13 +10,14 @@ from rest_framework import status
 from api import logger
 from api.models import CSVData, DownloadURL
 
+FILE_LOCATION = settings.BASE_DIR / "ancillaries" / ".essential-data.csv"
+
 
 def pull_down(url):
     """
     Downloads the necessary CSV file
     """
     try:
-        FILE_LOCATION = settings.BASE_DIR / "ancillaries" / ".essential-data.csv"
         response = requests.get(url, stream=True)
 
         if response.status_code == status.HTTP_200_OK:
@@ -32,9 +33,9 @@ def pull_down(url):
             )
             logger.info("New file downloaded")
     except (
-        requests.exceptions.HTTPError,
-        requests.exceptions.ConnectionError,
-        requests.exceptions.RequestException,
+            requests.exceptions.HTTPError,
+            requests.exceptions.ConnectionError,
+            requests.exceptions.RequestException,
     ) as e:
         logger.error(f"requests.exceptions: {e}")
 
@@ -58,7 +59,7 @@ class Command(BaseCommand):
                         pull_down(first_url.url)
                     else:
                         if first_url.updated.time().strftime(
-                            "%H:%M:%S"
+                                "%H:%M:%S"
                         ) > first_url.added.time().strftime("%H:%M:%S"):
                             pull_down(first_url.url)
         except (KeyboardInterrupt, SystemExit):

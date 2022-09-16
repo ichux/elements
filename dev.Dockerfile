@@ -1,24 +1,19 @@
-FROM python:3.8.8-buster
+FROM bitnami/python:3.10
 
 ENV PYTHONUNBUFFERED 1
 ENV LANG C.UTF-8
 ENV CRYPTOGRAPHY_DONT_BUILD_RUST 1
 
-RUN groupadd --gid 1000 ubuntu && useradd --uid 1000 --gid ubuntu --create-home --no-log-init --shell /bin/bash ubuntu
+RUN groupadd --gid 1000 debian-11 && \
+    useradd --uid 1000 --gid debian-11 --create-home --no-log-init --shell /bin/bash debian-11
 
-RUN apt-get update && apt-get install -y supervisor netcat
+RUN apt-get update && apt-get install -y supervisor netcat && apt-get clean
 COPY ancillaries/dev-supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY ancillaries/requirements.txt /app/ancillaries/requirements.txt
 
 WORKDIR /app
+RUN pip3.10 install --no-cache-dir --disable-pip-version-check --upgrade \
+    pip setuptools wheel -r /app/ancillaries/requirements.txt && chown -R debian-11:debian-11 ./
 
-COPY ./ancillaries/requirements.txt /app/ancillaries/requirements.txt
-
-RUN pip3.8 install --disable-pip-version-check --upgrade pip setuptools wheel
-RUN pip3.8 install --no-cache-dir -r /app/ancillaries/requirements.txt
-
-COPY . .
-
-RUN chown -R ubuntu:ubuntu ./
-USER ubuntu
-
+USER debian-11
 ENTRYPOINT ["sh", "./entrypoint.sh"]
