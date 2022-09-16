@@ -4,7 +4,6 @@ import time
 from django.conf import settings
 from django.core.management.base import BaseCommand
 from watchdog.events import PatternMatchingEventHandler
-from watchdog.observers import Observer
 
 from api import logger
 from api.models import CSVData, Prime
@@ -13,7 +12,7 @@ from api.models import CSVData, Prime
 class CSVWatcher(PatternMatchingEventHandler):
     def __init__(
         self,
-        patterns=[],
+        patterns=None,
         ignore_patterns=None,
         ignore_directories=False,
         case_sensitive=False,
@@ -69,17 +68,6 @@ class Command(BaseCommand):
     help = "Monitor CSV file for changes"
 
     def handle(self, *args, **options):
-        observer = Observer()
-        observer.schedule(
-            CSVWatcher(patterns=["essential-data.csv"]),
-            path=settings.BASE_DIR,
-        )
-        observer.start()
-
-        try:
-            while True:
-                time.sleep(1)
-        except (KeyboardInterrupt, SystemExit):
-            observer.stop()
-
-        observer.join()
+        while True:
+            CSVWatcher(patterns=[settings.BASE_DIR / "essential-data.csv"])
+            time.sleep(0.5)
