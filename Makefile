@@ -9,12 +9,12 @@
 help:
 	@grep "^# help\:" Makefile | sed 's/\# help\: //' | sed 's/\# help\://'
 
-
 .PHONY: bootstrap
 # help: bootstrap					- bootstrap the application for the first time. Run this only once!
 bootstrap:
-	@[ ! -f .env ] || [ ! -f core/per_settings.py ] && sh create_essential_files.sh
-
+	@sh create_essential_files.sh
+	@[ ! -f core/per_settings.py ] && \
+	printf "for dev, you need to have \x1b[31mcore/per_settings.py\x1b[0m present\n\n"
 
 .PHONY: build
 # help: build						- build the docker containers
@@ -22,13 +22,11 @@ build:
 	@#make build c=prod OR make build c=dev
 	@docker-compose -f $(c)-docker-compose.yml up --build -d
 
-
 .PHONY: bash
 # help: bash						- enter bash app
 bash:
 	@#make bash c=prod OR make bash c=dev
 	@docker exec -it element_app_$(c)_container bash
-
 
 .PHONY: logs
 # help: logs						- Get the logs of a service
@@ -40,17 +38,16 @@ logs:
 # help: tests						- Runs tests for the application
 tests:
 	@#make tests c=prod OR make tests c=dev
-	@docker exec -i element_app_$(c)_container python runtests.py
+	@docker exec -i element_app_$(c)_container python3 runtests.py
 
 .PHONY: admin
 # help: admin						- Create an admin user
 admin:
 	@#make admin c=dev
 	@echo "from django.contrib.auth.models import User; \
-	User.objects.create_superuser('admin', 'admin@elements.nl', 'P455InPWforAdmin')" \
-	| docker exec -i element_app_$(c)_container python manage.py shell
+	User.objects.create_superuser('admin', 'ichux@piccl.com', 'UnlockAdm1n')" \
+	| docker exec -i element_app_$(c)_container python3 manage.py shell
 	@echo "An admin user was successfully created"
-
 
 .PHONY: redev
 # help: redev						- Restart dev Supervisor

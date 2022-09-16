@@ -14,7 +14,7 @@ WORKDIR /app
 COPY ./ancillaries/requirements.txt /app/ancillaries/requirements.txt
 
 RUN pip3.8 install --disable-pip-version-check --upgrade pip setuptools wheel
-RUN pip3.8 install --no-cache-dir -r /app/ancillaries/requirements.txt gunicorn==20.1.0 meinheld==1.0.2
+RUN pip3.8 install --no-cache-dir -r /app/ancillaries/requirements.txt gunicorn meinheld
 
 COPY . .
 

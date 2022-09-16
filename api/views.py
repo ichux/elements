@@ -1,4 +1,4 @@
-from rest_framework import mixins, permissions, viewsets
+from rest_framework import viewsets
 
 from api.models import CSVData, DownloadURL, Prime
 from api.pagination import CSVSetPagination

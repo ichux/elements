@@ -6,7 +6,11 @@ from rest_framework.test import APITestCase
 
 from api.models import CSVData, DownloadURL, Prime
 
-URL = "https://docs.google.com/spreadsheet/ccc?key=0Aqg9JQbnOwBwdEZFN2JKeldGZGFzUWVrNDBsczZxLUE&single=true&gid=0&output=csv"
+URL = (
+    "https://docs.google.com/spreadsheet/ccc?"
+    "key=0Aqg9JQbnOwBwdEZFN2JKeldGZGFzUWVrNDBsczZxLUE"
+    "&single=true&gid=0&output=csv"
+)
 
 
 class ModelsTestCase(TestCase):
@@ -112,7 +116,7 @@ class CSVTest(TestCase):
         response = self.c.get("/api/csv/")
         self.assertEqual(response.status_code, 200)
 
-    def test_csv(self):
+    def test_csv_2(self):
         response = self.c.get("/api/csv/")
         self.assertEqual(
             response.json(), {"count": 0, "next": None, "previous": None, "results": []}

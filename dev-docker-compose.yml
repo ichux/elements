@@ -1,12 +1,12 @@
 version: '3.7'
 
 services:
-  element_app_dev_service:
+  if_elements_app_prod:
     build:
       context: .
       dockerfile: dev.Dockerfile
     command: supervisord
-    container_name: element_app_dev_container
+    container_name: cf_elements_app_prod
     restart: on-failure
     environment:
       TIME_ZONE: $TIME_ZONE
@@ -16,12 +16,5 @@ services:
     volumes:
       - .:/app
     ports:
-      - $DJANGO_DEV_PORT:8000
-      - $SUPERVISOR_DEV_PROD_PORT:9001
-    networks:
-      elements:
-        ipv4_address: $LAN_IP
-
-networks:
-  elements:
-    external: true
+      - ${DJANGO_DEV_PORT}:8000
+      - ${SUPERVISOR_DEV_PROD_PORT}:9001

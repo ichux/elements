@@ -1,4 +1,4 @@
-from rest_framework import filters, serializers
+from rest_framework import serializers
 
 from api.models import CSVData, DownloadURL, Prime
 

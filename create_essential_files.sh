@@ -1,6 +1,4 @@
-#!/bin/sh
-
-echo -n "This action OVERWRITES exitent files\n\nDo you wish to create them (y/n) as ? "
+printf "\nThis action \x1b[31mOVERWRITES\x1b[0m existent files\nDo you wish to create them (y/n) as ? \n"
 read answer
 
 create_files(){
@@ -22,17 +20,14 @@ ALLOWED_HOSTS=127.0.0.1 localhost
 
 # DOCKER DEVELOPMENT
 SUPERVISOR_DEV_PROD_PORT=17001
-DJANGO_DEV_PORT=0.0.0.0:17002
+DJANGO_DEV_PORT=17002
 
 # DOCKER PRODUCTION
 SUPERVISOR_ADMIN_PROD_PORT=18001
-DJANGO_PROD_PORT=0.0.0.0:18002
-
-# Local Network IP
-LAN_IP=192.168.8.210
+DJANGO_PROD_PORT=18002
 EOF
 
-echo "\n\n===\n'.env' has been successfully created\n===\n\n"
+echo "\n\x1b[32m===\x1b[0m\n'.env' has been successfully created\n\x1b[32m===\x1b[0m\n"
 }
 
 if [ "$answer" != "${answer#[Yy]}" ] ;then

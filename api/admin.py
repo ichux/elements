@@ -3,7 +3,6 @@ from pyclbr import readmodule
 
 from django.apps import apps
 from django.contrib import admin
-from django.utils.translation import gettext_lazy
 
 
 class DownloadURLAdmin(admin.ModelAdmin):
@@ -24,6 +23,7 @@ class CSVDataAdmin(admin.ModelAdmin):
     list_display = ["image", "title", "description"]
 
 
+# noinspection PyTypeChecker
 known_classes = dict(readmodule(__name__).items())
 current_module = sys.modules[__name__]
 
