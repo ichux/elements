@@ -1,28 +1,38 @@
 version: '3.7'
 
-
 services:
   if_elements_app_prod:
     image: if_elements_app_prod
+    healthcheck:
+      test: [ "CMD", "curl", "--fail", "http://127.0.0.1:8000/api/ping/" ]
+      interval: 3s
+      timeout: 3s
+      retries: 10
     build:
       context: .
       dockerfile: prod.Dockerfile
     command: supervisord
     container_name: cf_elements_app_prod
     restart: on-failure
+    environment:
+      TIME_ZONE: $TIME_ZONE
+      CHECK_URL_INTERVAL: $CHECK_URL_INTERVAL
+      LANGUAGE_CODE: $LANGUAGE_CODE
+      ALLOWED_HOSTS: $ALLOWED_HOSTS
     volumes:
       - .:/app
     ports:
+      - ${DJANGO_PROD_PORT}:8000
       - ${SUPERVISOR_ADMIN_PROD_PORT}:9001
 
   if_elements_nginx_prod:
-    image: nginx:1.21.1
+    image: nginx:1.23.1
     ports:
       - ${DJANGO_PROD_PORT}:80
     container_name: cf_elements_nginx_prod
     restart: on-failure
     volumes:
-      - $PWD/static:/etc/static
-      - $PWD/ancillaries/serveapi.conf:/etc/nginx/conf.d/default.conf
+      - ./static:/etc/static
+      - ./ancillaries/serveapi.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - if_elements_app_prod

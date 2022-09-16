@@ -1,7 +1,7 @@
 from django.urls import include, path
 from rest_framework import routers
 
-from api import post_views, views
+from api import pong, post_views, views
 
 router = routers.DefaultRouter()
 
@@ -19,4 +19,6 @@ urlpatterns = [
         post_views.DownloadURLData.as_view(),
         name="download_url_data",
     ),
+    # health status check
+    path("api/ping/", pong.index, name="ping"),
 ]

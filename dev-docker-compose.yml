@@ -3,6 +3,11 @@ version: '3.7'
 services:
   if_elements_app_dev:
     image: if_elements_app_dev
+    healthcheck:
+      test: [ "CMD", "curl", "--fail", "http://127.0.0.1:8000/api/ping/" ]
+      interval: 3s
+      timeout: 3s
+      retries: 10
     build:
       context: .
       dockerfile: dev.Dockerfile

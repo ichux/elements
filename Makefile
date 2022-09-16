@@ -26,7 +26,7 @@ build:
 # help: bash						- enter bash app
 bash:
 	@#make bash c=prod OR make bash c=dev
-	@docker exec -it element_app_$(c)_container bash
+	@docker exec -it cf_elements_app_$(c) bash
 
 .PHONY: logs
 # help: logs						- Get the logs of a service
@@ -46,7 +46,7 @@ admin:
 	@#make admin c=dev
 	@echo "from django.contrib.auth.models import User; \
 	User.objects.create_superuser('admin', 'ichux@piccl.com', 'UnlockAdm1n')" \
-	| docker exec -i element_app_$(c)_container python3 manage.py shell
+	| docker exec -i cf_elements_app_$(c) python3 manage.py shell
 	@echo "An admin user was successfully created"
 
 .PHONY: redev

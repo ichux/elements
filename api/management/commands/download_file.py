@@ -33,9 +33,9 @@ def pull_down(url):
             )
             logger.info("New file downloaded")
     except (
-            requests.exceptions.HTTPError,
-            requests.exceptions.ConnectionError,
-            requests.exceptions.RequestException,
+        requests.exceptions.HTTPError,
+        requests.exceptions.ConnectionError,
+        requests.exceptions.RequestException,
     ) as e:
         logger.error(f"requests.exceptions: {e}")
 
@@ -59,7 +59,7 @@ class Command(BaseCommand):
                         pull_down(first_url.url)
                     else:
                         if first_url.updated.time().strftime(
-                                "%H:%M:%S"
+                            "%H:%M:%S"
                         ) > first_url.added.time().strftime("%H:%M:%S"):
                             pull_down(first_url.url)
         except (KeyboardInterrupt, SystemExit):

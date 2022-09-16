@@ -7,7 +7,7 @@ ENV CRYPTOGRAPHY_DONT_BUILD_RUST 1
 RUN groupadd --gid 1000 debian-11 && \
     useradd --uid 1000 --gid debian-11 --create-home --no-log-init --shell /bin/bash debian-11
 
-RUN apt-get update && apt-get install -y supervisor netcat && apt-get clean
+RUN apt-get update && apt-get install -y supervisor netcat curl && apt-get clean
 COPY ancillaries/dev-supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY ancillaries/requirements.txt /app/ancillaries/requirements.txt
 
