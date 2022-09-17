@@ -2,3 +2,9 @@
 .idea/
 .gitignore
 .DS_Store
+README.md
+dev-supervisord.conf
+dev.Dockerfile
+prod-supervisord.conf
+prod.Dockerfile
+prod.nginx.Dockerfile
