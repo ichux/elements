@@ -7,7 +7,7 @@ cat > .env<< EOF
 CONCURRENCY=1
 
 # should gunicorn reload the project on change or not. Values: true or false
-WEB_RELOAD=true
+WEB_RELOAD=false
 
 # profile the application run by gunicorn to discover or trace bottlenecks
 PROFILE=false
@@ -16,7 +16,7 @@ PROFILE=false
 TIME_ZONE=Africa/Lagos
 CHECK_URL_INTERVAL=3
 LANGUAGE_CODE=en-uk
-ALLOWED_HOSTS=127.0.0.1 localhost
+ALLOWED_HOSTS=127.0.0.1 localhost if_elements_app_prod
 
 # DOCKER DEVELOPMENT
 SUPERVISOR_DEV_PROD_PORT=17001
@@ -28,7 +28,7 @@ DJANGO_PROD_PORT=18002
 NGINX_PORT=18003
 EOF
 
-echo "\n\x1b[32m===\x1b[0m\n'.env' has been successfully created\n\x1b[32m===\x1b[0m\n"
+printf "\n\x1b[32m===\x1b[0m\n'.env' has been successfully created\n\x1b[32m===\x1b[0m\n"
 }
 
 if [ "$answer" != "${answer#[Yy]}" ] ;then

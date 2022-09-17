@@ -1,6 +1,7 @@
 .env
 per_settings.py
 supervisord.pid
+.DS_Store
 
 # csv
 essential-data.csv

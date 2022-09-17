@@ -2,10 +2,6 @@ import multiprocessing
 import os
 import pathlib
 
-from dotenv import load_dotenv
-
-load_dotenv()
-
 
 def strtobool(val):
     """Convert a string representation of truth to true (1) or false (0).

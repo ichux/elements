@@ -17,4 +17,4 @@ RUN pip3.10 install --no-cache-dir --disable-pip-version-check --upgrade \
     chown -R debian-11:debian-11 ./
 
 USER debian-11
-ENTRYPOINT ["sh", "./entrypoint.sh"]
+ENTRYPOINT ["sh", "./ancillaries/entrypoint.sh"]

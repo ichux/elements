@@ -74,4 +74,4 @@ There are 2 monitoring services: download_file and monitor_file. And you can see
 see their log details, etc by visiting the [dev link](http://127.0.0.1:17001) or 
 the [prodution link](http://127.0.0.1:18003).
 
-[Read more](ancillaries/READMORE.md) about this project.
+[Read more](ancillaries/README.md) about this project.
