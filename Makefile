@@ -12,7 +12,7 @@ help:
 .PHONY: bootstrap
 # help: bootstrap					- bootstrap the application for the first time. Run this only once!
 bootstrap:
-	@sh create_essential_files.sh
+	@sh ./ancillaries/create_essential_files.sh
 	@[ ! -f core/per_settings.py ] && \
 	printf "for dev, you need to have \x1b[31mcore/per_settings.py\x1b[0m present\n\n"
 
