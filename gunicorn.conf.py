@@ -2,26 +2,6 @@ import multiprocessing
 import os
 import pathlib
 
-
-def strtobool(val):
-    """Convert a string representation of truth to true (1) or false (0).
-    True values are 'y', 'yes', 't', 'true', 'on', and '1'; false values
-    are 'n', 'no', 'f', 'false', 'off', and '0'.  Raises ValueError if
-    'val' is anything else. And return False on AttributeError.
-    """
-    try:
-        val = val.lower()
-    except AttributeError:
-        return 0
-
-    if val in ("y", "yes", "t", "true", "on", "1"):
-        return 1
-    if val in ("n", "no", "f", "false", "off", "0"):
-        return 0
-
-    raise ValueError(f"invalid truth value {val}")
-
-
 wsgi_app = "core.wsgi:application"
 bind = "0.0.0.0:8000"
 
@@ -37,8 +17,14 @@ max_requests_jitter = 1000
 timeout = 30
 graceful_timeout = 30
 
-workers = int(os.getenv("CONCURRENCY", multiprocessing.cpu_count() * 2 + 1))
-reload = bool(strtobool(os.getenv("WEB_RELOAD", "false")))
+workers = multiprocessing.cpu_count() * 2 + 1
+load = int(os.getenv("WEB_RELOAD", "0"))
+
+if load == 1:
+    reload = True
+if load == 0:
+    reload = False
+
 # worker_class = "meinheld.gmeinheld.MeinheldWorker"
 
 pidfile = f'{pathlib.Path.cwd() / "ancillaries" / "logs" / "ws.pid"}'
@@ -52,7 +38,7 @@ def post_fork(server, worker):
     the Arbiter and new Worker.
     """
 
-    if bool(strtobool(os.getenv("PROFILE"))):
+    if int(os.getenv("PROFILE", "0")):
         import cProfile
 
         orig_init_process_ = worker.init_process

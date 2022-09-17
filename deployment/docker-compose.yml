@@ -8,9 +8,6 @@ services:
       interval: 3s
       timeout: 3s
       retries: 10
-    build:
-      context: .
-      dockerfile: ancillaries/prod.Dockerfile
     command: supervisord
     container_name: cf_elements_app_prod
     restart: on-failure
@@ -30,10 +27,6 @@ services:
       test: [ "CMD", "service", "nginx", "status" ]
       interval: 3s
       timeout: 3s
-      retries: 10
-    build:
-      context: .
-      dockerfile: ancillaries/prod.nginx.Dockerfile
     command: nginx
     container_name: cf_elements_nginx_prod
     restart: on-failure
