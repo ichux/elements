@@ -6,7 +6,7 @@ read answer
 create_env(){
 cat > .env<< EOF
 # Get host IP
-DOCKER_HOST=$(ifconfig en0 | grep "inet[ ]" | awk '{print $2}')
+DOCKER_HOST_IP=$(ifconfig en0 | grep "inet[ ]" | awk '{print $2}')
 
 # Django settings
 DEBUG=1
