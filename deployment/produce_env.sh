@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
+# Inside the container run: curl `cat hip`:2108
+printf $(ifconfig en0 | grep "inet[ ]" | awk '{print $2}') > hip
+
 printf "\nThis action \x1b[31mOVERWRITES\x1b[0m existent files\nDo you wish to create them (y/n) as ? "
 read answer
 
 create_env(){
 cat > .env<< EOF
-# Get host IP
-DOCKER_HOST_IP=$(ifconfig en0 | grep "inet[ ]" | awk '{print $2}')
-
 # Django settings
 DEBUG=0
 SECRET_KEY=ad4ebc44fcdc1f055a3837646c46bf047d5568374c659af3438a66cad63c9e34321b790f
