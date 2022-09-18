@@ -5,6 +5,9 @@ read answer
 
 create_env(){
 cat > .env<< EOF
+# Get host IP
+DOCKER_HOST=$(ifconfig en0 | grep "inet[ ]" | awk '{print $2}')
+
 # Django settings
 DEBUG=0
 SECRET_KEY=ad4ebc44fcdc1f055a3837646c46bf047d5568374c659af3438a66cad63c9e34321b790f
@@ -15,7 +18,7 @@ ALLOWED_HOSTS=127.0.0.1 localhost
 
 # As of Django 4.0, the values in the CSRF_TRUSTED_ORIGINS setting
 # must start with a scheme (usually http:// or https://)
-CSRF_TRUSTED_ORIGINS=http://127.0.0.1:18003 http://localhost:18003 http://127.0.0.1 http://localhost
+CSRF_TRUSTED_ORIGINS=http://127.0.0.1 http://localhost
 
 # DOCKER PRODUCTION
 SUPERVISOR_ADMIN_PROD_PORT=18001
