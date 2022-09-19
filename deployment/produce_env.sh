@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # Inside the container run: curl `cat hip`:2108
+# docker exec -it cf_elements_app_prod bash -c 'curl `cat hip`:2108/.env'
 printf $(ifconfig en0 | grep "inet[ ]" | awk '{print $2}') > hip
 
 printf "\nThis action \x1b[31mOVERWRITES\x1b[0m existent files\nDo you wish to create them (y/n) as ? "
