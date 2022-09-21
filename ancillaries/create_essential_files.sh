@@ -7,7 +7,7 @@ create_env(){
 cat > .env<< EOF
 # Django settings
 DEBUG=1
-SECRET_KEY=7b77ad7601c3f546b97ca24782037f131463e26bd27a3236a7a84215becc3e6cbb8b16e5
+SECRET_KEY=`openssl rand -base64 32``python3 -c "import secrets; print(secrets.token_hex(16))"``openssl rand -hex 16`
 TIME_ZONE=Africa/Lagos
 CHECK_URL_INTERVAL=3
 LANGUAGE_CODE=en-uk
